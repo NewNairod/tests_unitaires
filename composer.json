@@ -73,6 +73,7 @@
     "scripts": {
         
         "test": "php bin/phpunit",
+        "coverage": "php bin/phpunit --coverage-html tests_coverage",
         
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
