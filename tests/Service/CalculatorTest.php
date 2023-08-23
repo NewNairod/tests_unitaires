@@ -3,10 +3,10 @@
 namespace App\Tests\Service;
 
 use App\Service\Calculator;
-use App\Entity\Product; // Import your Product entity
-use PHPUnit\Framework\TestCase;
+use App\Entity\Product;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class CalculatorTest extends TestCase
+class CalculatorTest extends KernelTestCase
 {
     public function testGetTotalHT()
     {
