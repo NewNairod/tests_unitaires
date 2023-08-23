@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Service\EmailService;
+
 class Invoice
 {
     private $emailService;
@@ -11,10 +13,15 @@ class Invoice
         $this->emailService = $emailService;
     }
 
-    public function process(float $amount, string $recipientEmail): bool
+    public function process($email, $message)
     {
-        $message = "Votre commande d'un montant de {$amount}€ est confirmée.";
-
-        return $this->emailService->send($recipientEmail, $message);
+        $emailSent = $this->emailService->send($email, $message);
+        
+        if ($emailSent) {
+            return 'Mail envoyé';
+        } else {
+            return 'Mail pas envoyé';
+        }
     }
 }
+

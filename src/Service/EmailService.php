@@ -4,8 +4,8 @@ namespace App\Service;
 
 class EmailService
 {
-    public function send(string $recipientEmail, string $message): bool
+    public function send($email, $message)
     {
-        return (bool) rand(0, 1);
+        return rand(0, 1) === 1;
     }
 }
