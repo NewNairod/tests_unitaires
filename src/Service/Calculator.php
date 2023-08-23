@@ -19,9 +19,7 @@ class Calculator
     {
         $totalTTC = 0;
 
-        foreach ($products as $product) {
-            $totalTTC += ($product['product']->getPrice() * $product['quantity']) * (1 + ($tva / 100));
-        }
+        $totalTTC = $this->getTotalHT($products) * (1 + ($tva / 100));
 
         return $totalTTC;
     }

@@ -23,7 +23,7 @@ class CalculatorTest extends KernelTestCase
 
         $totalHT = $calculator->getTotalHT($products);
 
-        $this->assertEquals(10 * 2 + 15 * 3, $totalHT);
+        $this->assertEquals(65, $totalHT);
     }
 
     public function testGetTotalTTC()
@@ -42,9 +42,8 @@ class CalculatorTest extends KernelTestCase
         $tva = 20;
         
         $totalTTC = $calculator->getTotalTTC($products, $tva);
-
-        $expectedTotalTTC = (10 * 2 + 15 * 3) * (1 + ($tva / 100));
-        $this->assertEquals($expectedTotalTTC, $totalTTC);
+        
+        $this->assertEquals(78, $totalTTC);
     }
 }
 
