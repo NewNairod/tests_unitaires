@@ -67,12 +67,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="active" href="{{ path('accueil') }}">Accueil</a></li>
-          {% if app.user %}
           <li><a href="{{ path('logout') }}">Deconnexion</a></li>
-          {% else %}
           <li><a href="{{ path('register') }}">Inscription</a></li>
           <li><a href="{{ path('login') }}">Connexion</a></li>
-          {% endif %}
 
 
         <!--
