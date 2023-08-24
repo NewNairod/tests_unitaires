@@ -44,7 +44,7 @@ class LoginTest extends WebTestCase
         $this->assertTrue($this->client->getResponse()->isRedirect()); 
         $crawler = $this->client->followRedirect(); 
 
-        $this->assertSelectorTextContains('h1', 'Bienvenue'); 
+        $this->assertSelectorTextContains('h1', 'Accueil'); 
     }
  
     public function testWrongLogin()

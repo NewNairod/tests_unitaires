@@ -40,7 +40,7 @@ class RegisterTest extends WebTestCase
 
         $form = $crawler->selectButton('Inscription')->form();
         $form['registration_form[email]'] = 'newuser@example.com';
-        $form['registration_form[password][first]'] = 'newpassword';
+        $form['registration_form[password]'] = 'newpassword';
         $form['registration_form[firstName]'] = 'John';
         $form['registration_form[lastName]'] = 'Doe';
 
