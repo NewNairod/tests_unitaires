@@ -3,6 +3,11 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+{% if isConnected %}
+        <p>Vous êtes connecté</p>
+    {% else %}
+        <p>Vous n'êtes pas connecté</p>
+    {% endif %}
 <!-- ======= Hero Section ======= -->
 <section id="hero">
 <div class="hero-container">

@@ -11,7 +11,10 @@ class IndexController extends AbstractController
     #[Route('/', name: 'accueil')]
     public function index(): Response
     {
+        $isConnected = $this->getUser() !== null;
 
-        return $this->render('index/index.html.twig');
+        return $this->render('index/index.html.twig', [
+            'isConnected' => $isConnected,
+        ]);
     }
 }
