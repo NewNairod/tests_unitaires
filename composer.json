@@ -75,7 +75,7 @@
     },
     "scripts": {
         
-        "test": "php bin/phpunit",
+        "test": "make tests",
         "coverage": "php bin/phpunit --coverage-html tests_coverage",
         
         "auto-scripts": {
