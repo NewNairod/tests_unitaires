@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{% block title %}Entreprise!{% endblock %}</title>
+  <title>{% block title %}Let's go{% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -66,10 +66,14 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          {# <li><a class="active" href="{{ path('accueil') }}">Accueil</a></li> #}
+          <li><a class="active" href="{{ path('accueil') }}">Accueil</a></li>
           {# <li><a href="{{ path('logout') }}">Deconnexion</a></li> #}
-          <li><a class="active" href="{{ path('register') }}">Inscription</a></li>
+          {% if app.user %}
+          <li><a href="{{ path('logout') }}">Deconnexion</a></li>
+          {% else %}
+          <li><a href="{{ path('register') }}">Inscription</a></li>
           <li><a href="{{ path('login') }}">Connexion</a></li>
+          {% endif %}
 
 
         <!--

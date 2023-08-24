@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+<div class="hero-container">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+    <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url({{ asset('/img/slide/slide-1.jpg') }})">
+        <div class="carousel-container">
+            <div class="carousel-content">
+            <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Eterna</span></h2>
+            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" style="background-image: url({{ asset('/img/slide/slide-2.jpg') }})">
+        <div class="carousel-container">
+            <div class="carousel-content">
+            <h2 class="animate__animated fanimate__adeInDown">Lorem <span>Ipsum Dolor</span></h2>
+            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item" style="background-image: url({{ asset('/img/slide/slide-3.jpg') }})">
+        <div class="carousel-container">
+            <div class="carousel-content">
+            <h2 class="animate__animated animate__fadeInDown">Sequi ea <span>Dime Lara</span></h2>
+            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <a href="" class="btn-get-started animate__animated animate__fadeInUp">Read More</a>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+    </a>
+
+    </div>
+</div>
+</section><!-- End Hero -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <section id="featured" class="featured">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-4">
+                    <div class="icon-box">
+                    <i class="bi bi-card-checklist"></i>
+                    <h3><a href="">Lorem Ipsum</a></h3>
+                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                    <i class="bi bi-bar-chart"></i>
+                    <h3><a href="">Dolor Sitema</a></h3>
+                    <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                    <i class="bi bi-binoculars"></i>
+                    <h3><a href="">Sed ut perspiciatis</a></h3>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </section><!-- End Featured Section -->
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum lorem convallis dolor consectetur, vel placerat tortor finibus. Sed imperdiet, mi a sagittis condimentum, mi enim tempus tortor, tempor tincidunt nibh lacus non libero. Morbi commodo metus nec erat lobortis, vel blandit nibh pharetra. Sed est lacus, consequat non egestas in, euismod sed nibh. Cras semper sagittis velit vel sagittis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas vehicula leo nec velit euismod, a finibus ipsum rutrum. Cras pharetra diam dolor, porttitor ultrices neque suscipit id. Cras mattis, mauris id lacinia facilisis, urna mauris tincidunt odio, nec tempus mauris dui vel neque. In scelerisque lacus vel ante imperdiet ornare.
+            </p>
+            <p>
+                Sed scelerisque et orci id ultricies. Nullam et lacus eros. Aenean eget dui at mauris blandit molestie. Sed ultricies justo non laoreet sagittis. Aenean pulvinar vestibulum urna bibendum ultrices. Vivamus vitae justo vel eros consequat efficitur. Nullam eu purus quis nisi congue faucibus vitae non nisl. Sed tincidunt pretium urna, vitae tincidunt dolor rutrum id. Vestibulum tristique, augue eu ullamcorper ultricies, est velit porttitor diam, at finibus justo quam in dolor. Aenean sit amet tristique nibh. Mauris dapibus dapibus tortor, vitae lobortis nunc blandit et. Donec tempor quis justo et auctor.
+            </p>
+            <p>
+                Nullam nec faucibus elit, a finibus velit. Duis iaculis nibh quis erat feugiat, a lacinia diam egestas. Aenean neque orci, ullamcorper at turpis id, ullamcorper bibendum leo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla augue erat, scelerisque ac sem eget, aliquam rhoncus lacus. Donec at mi ante. Sed ac placerat purus. Sed sollicitudin, ante sit amet laoreet rutrum, orci neque ullamcorper ipsum, pellentesque hendrerit nisl justo nec mauris. Fusce luctus risus nec dapibus commodo. Nullam facilisis vestibulum felis at viverra. Mauris rutrum convallis auctor. Donec porttitor elit vitae nisl eleifend, vitae dictum lectus faucibus. Suspendisse et elementum augue. Duis non purus metus. Fusce id tristique magna. Nam vestibulum quam nunc, at eleifend ante suscipit id.
+            </p>
+            <p>
+                Phasellus euismod vehicula lorem. Curabitur tempus neque nec dui viverra, ut accumsan magna cursus. Duis feugiat ultricies consequat. Donec aliquam eu quam sed congue. Aenean gravida mattis mi, ac pretium ligula efficitur ut. Aenean lobortis pharetra diam eget ultrices. Nam risus nibh, facilisis mattis turpis sed, euismod feugiat lorem. Sed eget sagittis nisl, viverra auctor sapien. Aliquam erat volutpat. Mauris tellus ligula, pulvinar id elementum vitae, finibus in orci. Suspendisse eleifend metus id metus elementum blandit.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
