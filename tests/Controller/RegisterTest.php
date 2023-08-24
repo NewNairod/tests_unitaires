@@ -1,38 +1,57 @@
 <?php
-
+ 
 namespace App\Tests\Controller;
-
-use App\DataFixtures\UserFixtures;
+ 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
+ 
 class RegisterTest extends WebTestCase
 {
     private $client;
     private $entityManager;
-    
-    public function setUp(): void
+
+    protected function setUp(): void
     {
         parent::setUp();
-
+ 
         $this->client = static::createClient();
         $this->entityManager = $this->client->getContainer()->get('doctrine')->getManager();
-        
-        $this->loadFixtures([UserFixtures::class]);
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
         
-        // Supprimer l'utilisateur qu'on vient de créer en BDD
-        $user = $this->entityManager->getRepository(User::class)->findOneByUsername('testuser');
-        if ($user) {
-            $this->entityManager->remove($user);
-            $this->entityManager->flush();
-        }
-
-        // Remettre client et entity manager à null
         $this->client = null;
         $this->entityManager = null;
+    }
+ 
+    public function testRenderRegisterPage()
+    {
+        $crawler = $this->client->request('GET', '/register');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h1', 'Inscription');
+    }
+ 
+    public function testSuccessfulRegister()
+    {
+        $crawler = $this->client->request('GET', '/register');
+
+        $form = $crawler->selectButton('Inscription')->form();
+        $form['registration_form[email]'] = 'newuser@example.com';
+        $form['registration_form[password][first]'] = 'newpassword';
+        $form['registration_form[firstName]'] = 'John';
+        $form['registration_form[lastName]'] = 'Doe';
+
+        $this->client->submit($form);
+
+        $this->assertTrue($this->client->getResponse()->isRedirect());
+        $crawler = $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('h1', 'Connexion'); 
+
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'newuser@example.com']);
+        $this->assertInstanceOf(User::class, $user);
     }
 }
