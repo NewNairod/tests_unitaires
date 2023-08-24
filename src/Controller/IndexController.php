@@ -13,8 +13,6 @@ class IndexController extends AbstractController
     {
         $isConnected = $this->getUser() !== null;
 
-        return $this->render('index/index.html.twig', [
-            'isConnected' => $isConnected,
-        ]);
+        return $this->render('index/index.html.twig');
     }
 }
