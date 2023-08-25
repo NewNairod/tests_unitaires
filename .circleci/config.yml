@@ -8,14 +8,16 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      # Specify the docker image for the job
+      # Installation de l’image PHP
       - image: cimg/php:8.2.4
+      # Installation de l’image pour la base de données
+
       - image: cimg/mariadb:10.4.21
 
     steps:
       # Récupération du code source depuis le dépôt Git
       - checkout
-      
+
       # Installation des dépendances requises par PHP
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
@@ -28,19 +30,18 @@ jobs:
             - v1-dependencies-{{ checksum "composer.json" }}
             # Clé de cache par défaut (en cas de non-correspondance avec la clé précédente)
             - v1-dependencies-
-      
+
       # Installation des dépendances avec Composer
       - run:
           name: "Install Dependencies"
           command: composer install -n --prefer-dist
-      
-      # Sauvegarde du cache de dépendances
+
+          # Sauvegarde du cache de dépendances
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
-            - ./vendor
- 
-      # Exécution des tests avec PHPUnit
+          - ./vendor
+          # Exécution des tests avec PHPUnit
       - run:
           name: "Run tests"
           command: composer test
