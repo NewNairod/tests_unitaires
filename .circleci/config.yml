@@ -29,9 +29,9 @@ jobs:
     - v1-dependencies-
     # Installation des dépendances avec Composer
     - run:
-    name: "Install Dependencies"
-    command: composer install -n --prefer-dist
-    # Sauvegarde du cache de dépendances
+      name: "Install Dependencies"
+      command: composer install -n --prefer-dist
+      # Sauvegarde du cache de dépendances
     - save_cache:
     key: v1-dependencies-{{ checksum "composer.json" }}
     paths:
