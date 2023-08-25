@@ -52,6 +52,8 @@ class RegisterTest extends WebTestCase
         $this->assertEquals('newuser@example.com', $user->getEmail());
         $this->assertEquals('John', $user->getFirstName());
         $this->assertEquals('Doe', $user->getLastName());
+
+        $this->assertTrue(password_verify('newpassword', $user->getPassword()));
     }
 
     protected function tearDown():void{
