@@ -17,21 +17,13 @@ class RegisterTest extends WebTestCase
         $this->client = static::createClient();
         $this->entityManager = $this->client->getContainer()->get('doctrine')->getManager();
     }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-        
-        $this->client = null;
-        $this->entityManager = null;
-    }
  
     public function testRenderRegisterPage()
     {
         $crawler = $this->client->request('GET', '/register');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('#registration-form'); // Assurez-vous que l'élément avec l'ID "registration-form" existe
+        $this->assertSelectorTextContains('h2', 'Inscription');
     }
  
     public function testSuccessfulRegister()
@@ -46,12 +38,29 @@ class RegisterTest extends WebTestCase
 
         $this->client->submit($form);
 
-        $this->assertTrue($this->client->getResponse()->isRedirect());
+        $this->assertResponseRedirects();
+        $location = $this->client->getResponse()->headers->get('Location');
+        $this->assertStringEndsWith('/login', $location);
         $crawler = $this->client->followRedirect();
-
-        $this->assertSelectorExists('#login-form'); // Assurez-vous que l'élément avec l'ID "login-form" existe
-
+        $this->assertSelectorTextContains('h2', "Connexion");
+        
+       // Vérifier qu'on retrouve bien l'utilisateur en BDD
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'newuser@example.com']);
         $this->assertInstanceOf(User::class, $user);
+    }
+
+    protected function tearDown():void{
+        parent::tearDown();
+
+        // Supprimer l'utilisateur créé en BDD
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'newuser@example.com']);
+        if ($user) {
+            $this->entityManager->remove($user);
+            $this->entityManager->flush();
+        }
+
+        // Remettre le client et l'entity manager à null
+        $this->client = null;
+        $this->entityManager = null;
     }
 }

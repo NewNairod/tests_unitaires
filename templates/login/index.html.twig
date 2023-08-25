@@ -3,15 +3,16 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
+
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 id='login-form'>Connexion</h1>
+            <h2 id='login-form'>Connexion</h2>
             <hr>
             <div class="row">
                 <div class="col-sm-6 mx-auto">
                     {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <h3 class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</h3>
                     {% endif %}
 
                     <form action="{{ path('login') }}" method="post">

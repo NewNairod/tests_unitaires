@@ -27,7 +27,7 @@ class LoginTest extends WebTestCase
         $crawler = $this->client->request('GET', '/login');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorExists('#login-form');
+        $this->assertSelectorTextContains('h2', 'Connexion');
     }
 
     public function testSuccessfulLogin()
@@ -55,8 +55,10 @@ class LoginTest extends WebTestCase
             '_password' => 'testtest',
         ]);
         $this->client->submit($form);
-        $this->assertTrue($this->client->getResponse()->isRedirect());
+        $this->assertResponseRedirects();
+        $location = $this->client->getResponse()->headers->get('Location');
+        $this->assertStringEndsWith('/login', $location);
         $crawler = $this->client->followRedirect();
-        $this->assertSelectorExists('#login-form');
+        $this->assertSelectorTextContains('h3', "Invalid credentials.");;
     }
 }
