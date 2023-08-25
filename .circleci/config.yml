@@ -22,21 +22,21 @@ jobs:
     # Récupération et restauration du cache de dépendances
     # Le cache de dépendances est une fonctionnalité de CircleCI (et d'autres outils similaires) qui permet de stocker temporairement des fichiers ou des artefacts générés par une tâche ou un processus, afin d'accélérer les builds ultérieurs.
     - restore_cache:
-      keys:
-        # Clé de cache correspondant au fichier composer.json
-        - v1-dependencies-{{ checksum "composer.json" }}
-        # Clé de cache par défaut (en cas de non-correspondance avec la clé précédente)
-        - v1-dependencies-
-        # Installation des dépendances avec Composer
+        keys:
+          # Clé de cache correspondant au fichier composer.json
+          - v1-dependencies-{{ checksum "composer.json" }}
+          # Clé de cache par défaut (en cas de non-correspondance avec la clé précédente)
+          - v1-dependencies-
+      # Installation des dépendances avec Composer
     - run:
-      name: "Install Dependencies"
-      command: composer install -n --prefer-dist
-      # Sauvegarde du cache de dépendances
+        name: "Install Dependencies"
+        command: composer install -n --prefer-dist
+        # Sauvegarde du cache de dépendances
     - save_cache:
-    key: v1-dependencies-{{ checksum "composer.json" }}
-    paths:
-    - ./vendor
-    # Exécution des tests avec PHPUnit
+        key: v1-dependencies-{{ checksum "composer.json" }}
+        paths:
+        - ./vendor
+        # Exécution des tests avec PHPUnit
     - run:
-    name: "Run tests"
-    command: composer test
+        name: "Run tests"
+        command: composer test
