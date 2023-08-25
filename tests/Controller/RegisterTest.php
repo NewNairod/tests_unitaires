@@ -47,6 +47,11 @@ class RegisterTest extends WebTestCase
        // Vérifier qu'on retrouve bien l'utilisateur en BDD
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'newuser@example.com']);
         $this->assertInstanceOf(User::class, $user);
+
+        // Vérifier que les données de l'utilisateur sont correctes
+        $this->assertEquals('newuser@example.com', $user->getEmail());
+        $this->assertEquals('John', $user->getFirstName());
+        $this->assertEquals('Doe', $user->getLastName());
     }
 
     protected function tearDown():void{
