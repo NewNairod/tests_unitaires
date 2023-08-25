@@ -1,42 +1,46 @@
 version: 2
+
+# Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
+
 jobs:
   build:
-# Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-
-# See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      # Installation de l’image PHP
+      # Specify the docker image for the job
       - image: cimg/php:8.2.4
-      # Installation de l’image pour la base de données
-
-      - image: cimg/mysql:8.0
+      - image: cimg/mariadb:10.4.21
 
     steps:
       # Récupération du code source depuis le dépôt Git
       - checkout
+      
       # Installation des dépendances requises par PHP
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+
       # Récupération et restauration du cache de dépendances
       # Le cache de dépendances est une fonctionnalité de CircleCI (et d'autres outils similaires) qui permet de stocker temporairement des fichiers ou des artefacts générés par une tâche ou un processus, afin d'accélérer les builds ultérieurs.
-    - restore_cache:
-      keys:
-        # Clé de cache correspondant au fichier composer.json
-        - v1-dependencies-{{ checksum "composer.json" }}
-        # Clé de cache par défaut (en cas de non-correspondance avec la clé précédente)
-        - v1-dependencies-
-        # Installation des dépendances avec Composer
-    - run:
-      name: "Install Dependencies"
-      command: composer install -n --prefer-dist
-    # Sauvegarde du cache de dépendances
-    - save_cache:
-      key: v1-dependencies-{{ checksum "composer.json" }}
-      paths:
-      - ./vendor
-    # Exécution des tests avec PHPUnit
-    - run:
-      name: "Run tests"
-      command: composer test
+      - restore_cache:
+          keys:
+            # Clé de cache correspondant au fichier composer.json
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # Clé de cache par défaut (en cas de non-correspondance avec la clé précédente)
+            - v1-dependencies-
+      
+      # Installation des dépendances avec Composer
+      - run:
+          name: "Install Dependencies"
+          command: composer install -n --prefer-dist
+      
+      # Sauvegarde du cache de dépendances
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+ 
+      # Exécution des tests avec PHPUnit
+      - run:
+          name: "Run tests"
+          command: composer test
