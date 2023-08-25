@@ -3,10 +3,11 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<h1 id='home'>Accueil</h1>
 {% if app.user %}
-        <p>Vous êtes connecté</p>
+        <p id='connected'>Vous êtes connecté</p>
     {% else %}
-        <p>Vous n'êtes pas connecté</p>
+        <p id='no-connect'>Vous n'êtes pas connecté</p>
     {% endif %}
 <!-- ======= Hero Section ======= -->
 <section id="hero">
